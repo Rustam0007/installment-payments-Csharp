@@ -11,7 +11,6 @@ namespace Instalments.Onbording
             var categoriesData = db.Get<Categories>("SELECT id, category FROM categories");
             var categories = new List<Categories>(categoriesData);
 
-            Console.WriteLine("У нас в магазине есть такие категории:\n");
             foreach (var category in categories)
             {
                 Console.WriteLine($"Категория: {category.Category}. ID: {category.Id}.");

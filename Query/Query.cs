@@ -25,4 +25,17 @@ public class Query
 
         return connection.QuerySingleOrDefault<T>(sql, parameters);
     }
+    
+    public bool Insert<T>(string title, float price, int categoryId, string tableName)
+    {
+        var connection = new NpgsqlConnection(ConnectionString);
+        connection.Open();
+
+        var sql = $"INSERT INTO {tableName} (title, price, category_id) VALUES (@Title, @Price, @CategoryId)";
+        var parameters = new { Title = title, Price = price, CategoryId = categoryId };
+
+        var rowsAffected = connection.Execute(sql, parameters);
+
+        return rowsAffected > 0;
+    }
 }

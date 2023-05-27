@@ -5,7 +5,6 @@ public class OnbordingPeriod
     public int Period(int categoryId)
     {
         var db = new Query();
-        Console.WriteLine("\nНа какой срок вы хотите брать товар?\n");
         var periodsData = db.Get<Periods>($"SELECT id, commission, period FROM period WHERE category_id = {categoryId}");
         var periods = new List<Periods>(periodsData);
         foreach (var p in periods)
@@ -26,16 +25,12 @@ public class OnbordingPeriod
                     break;
                 case "W":
                     Console.Clear();
-                    periodId = 0;
                     return periodId;
             }
 
-            if (int.TryParse(input, out periodId))
+            if (int.TryParse(input, out periodId) && periods.Exists(p => p.Id == periodId))
             {
-                if (periods.Exists(p => p.Id == periodId))
-                {
-                    break;
-                }
+                break;
             }
             Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
         }

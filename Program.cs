@@ -8,35 +8,34 @@ namespace Instalments;
         {
             var db = new Query();
 
-            Console.WriteLine("Добро пожаловать на магазин AlifShop");
+            Console.WriteLine("Добро пожаловать на магазин AlifBankShop");
+            Console.WriteLine("Запомните все команды которые будут использоватся в приложении вы должны вводит английскими буквами!");
 
             while (true)
             {
-                var category = new OnbordingCategory();
-                var categoryId = category.Category();
-                
-                var product = new OnbordingProduct();
-                var productId = product.Product(categoryId);
-                if (productId == 0)
+                Console.Write("Вы продавец или покупатель? Для выбора введите 'S' продавец или 'C' покупатель: ");
+                var choiceInput = Console.ReadLine();
+                switch (choiceInput?.ToUpper())
                 {
-                    continue;
+                    case "S":
+                    {
+                        var seller = new OnbordingSeller();
+                        seller.Seller();
+                        break;
+                    }
+                    case "C":
+                    {
+                        var customer = new OnbordingCustomer();
+                        customer.Customer();
+                        break;
+                    }
+                    default:
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Выберите правильную команду пожалуйста!");
+                        continue;
+                    }
                 }
-                
-                var period = new OnbordingPeriod();
-                var periodId = period.Period(categoryId);
-                if (periodId == 0)
-                {
-                    continue;
-                }
-            
-                var price = db.GetById<Product>(productId, "products");
-                var commission = db.GetById<Periods>(periodId, "period");
-
-
-                var calculate = new Calculate();
-                var result = calculate.CalculatePercent(price.Price, commission.Commission);
-                
-                Console.WriteLine($"Общая сумма товара равна - {result}");
                 break;
             }
         }
