@@ -2,7 +2,7 @@
 
 namespace Instalments;
 
-public class OnbordingCustomer
+public class Customers
 {
     public void Customer()
     {

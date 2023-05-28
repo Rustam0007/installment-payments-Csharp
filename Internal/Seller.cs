@@ -3,7 +3,7 @@ using Instalments.Onbording;
 
 namespace Instalments;
 
-public class OnbordingSeller
+public class Sellers
 {
     public void Seller()
     {

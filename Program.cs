@@ -10,22 +10,22 @@ namespace Instalments;
 
             Console.WriteLine("Добро пожаловать на магазин AlifBankShop");
             Console.WriteLine("Запомните все команды которые будут использоватся в приложении вы должны вводит английскими буквами!");
-
+            
             while (true)
             {
-                Console.Write("Вы продавец или покупатель? Для выбора введите 'S' продавец или 'C' покупатель: ");
+                Console.Write($"Вы продавец или покупатель? Для выбора введите 'S' продавец или 'C' покупатель: ");
                 var choiceInput = Console.ReadLine();
                 switch (choiceInput?.ToUpper())
                 {
                     case "S":
                     {
-                        var seller = new OnbordingSeller();
+                        var seller = new Sellers();
                         seller.Seller();
                         break;
                     }
                     case "C":
                     {
-                        var customer = new OnbordingCustomer();
+                        var customer = new Customers();
                         customer.Customer();
                         break;
                     }
