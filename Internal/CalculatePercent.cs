@@ -1,6 +1,4 @@
-﻿
-
-namespace Instalments;
+﻿namespace Instalments;
 
 public class Calculate
 {

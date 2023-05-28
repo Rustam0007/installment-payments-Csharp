@@ -5,8 +5,7 @@ public class OnbordingProduct
     public int Product(int categoryId)
     {
         var db = new Query();
-        var productsData = db.Get<Product>($"SELECT id, title, price FROM products WHERE category_id = {categoryId}");
-        var products = new List<Product>(productsData);
+        var products = new List<Product>(db.Get<Product>($"SELECT id, title, price FROM products WHERE category_id = {categoryId}"));
         foreach (var product in products)
         {
             Console.WriteLine($"Название: {product.Title}. Цена: {product.Price}. ID товара: {product.Id}.");
@@ -16,8 +15,8 @@ public class OnbordingProduct
         while (true)
         {
             Console.Write("\nВведите iD товара для выбора (для выхода введите 'Z' для возврата на категории введите 'W'): ");
-            var input = Console.ReadLine();
-            switch (input?.ToUpper())
+            var input = Console.ReadLine().ToUpper();
+            switch (input)
             {
                 case "Z":
                     Console.WriteLine("\nОх жаль что уходите... ):");

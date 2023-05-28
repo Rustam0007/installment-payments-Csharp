@@ -5,8 +5,7 @@ public class OnbordingPeriod
     public int Period(int categoryId)
     {
         var db = new Query();
-        var periodsData = db.Get<Periods>($"SELECT id, commission, period FROM period WHERE category_id = {categoryId}");
-        var periods = new List<Periods>(periodsData);
+        var periods = new List<Periods>(db.Get<Periods>($"SELECT id, commission, period FROM period WHERE category_id = {categoryId}"));
         foreach (var p in periods)
         {
             Console.WriteLine($"{p.Period} месяцев. Коммиссия {p.Commission}. ID: {p.Id}.");
@@ -16,8 +15,8 @@ public class OnbordingPeriod
         while (true)
         {
             Console.Write("\nДля выбора введите ID срока (для выхода введите 'Z'. Для возврата на категории введите 'W' ): ");
-            var input = Console.ReadLine();
-            switch (input?.ToUpper())
+            var input = Console.ReadLine().ToUpper();
+            switch (input)
             {
                 case "Z":
                     Console.WriteLine("\nОх жаль что уходите ):");

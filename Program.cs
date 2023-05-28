@@ -14,8 +14,8 @@ namespace Instalments;
             while (true)
             {
                 Console.Write($"Вы продавец или покупатель? Для выбора введите 'S' продавец или 'C' покупатель: ");
-                var choiceInput = Console.ReadLine();
-                switch (choiceInput?.ToUpper())
+                var choiceInput = Console.ReadLine().ToUpper();
+                switch (choiceInput)
                 {
                     case "S":
                     {

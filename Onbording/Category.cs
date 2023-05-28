@@ -8,8 +8,7 @@ namespace Instalments.Onbording
         public int Category()
         {
             var db = new Query();
-            var categoriesData = db.Get<Categories>("SELECT id, category FROM categories");
-            var categories = new List<Categories>(categoriesData);
+            var categories = new List<Categories>(db.Get<Categories>("SELECT id, category FROM categories"));
 
             foreach (var category in categories)
             {
@@ -20,19 +19,15 @@ namespace Instalments.Onbording
             while (true)
             {
                 Console.Write("Для выбора категории введите его ID (для выхода введите 'Z'): ");
-                var input = Console.ReadLine();
-                if (input?.ToUpper() == "Z")
+                var input = Console.ReadLine().ToUpper();
+                if (input == "Z")
                 {
                     Console.WriteLine("\nОх жаль что уходите ):");
                     Environment.Exit(0);
                 }
-
-                if (int.TryParse(input, out categoryId))
+                else if (int.TryParse(input, out categoryId) && categories.Exists(c => c.Id == categoryId))
                 {
-                    if (categories.Exists(c => c.Id == categoryId))
-                    {
-                        break;
-                    }
+                    break;
                 }
                 Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
             }
